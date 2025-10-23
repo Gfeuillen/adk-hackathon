@@ -92,9 +92,54 @@ Write-Host "gemini extensions install https://github.com/gemini-cli-extensions/g
 Write-Host "gemini extensions install https://github.com/ox01024/gemini-cli-git"
 Write-Host "gemini extensions install https://github.com/gemini-cli-extensions/code-review"
 
-# 4. Environment Configuration (Manual Steps)
+# 4. Project Setup
 
-Write-Host "`n--- 4. Environment Configuration (Manual Steps) ---"
+Write-Host "`n--- 4. Project Setup ---"
+
+# Check for agent_registration_tool directory
+if (Test-Path -Path "agent_registration_tool" -PathType Container) {
+    Write-Host "✅ agent_registration_tool directory found."
+} else {
+    Write-Host "❌ agent_registration_tool directory NOT found. Please clone it using: git clone https://github.com/VeerMuchandi/agent_registration_tool.git"
+}
+
+# Check for requirements.txt file
+if (Test-Path -Path "requirements.txt" -PathType Leaf) {
+    Write-Host "✅ requirements.txt file found."
+} else {
+    Write-Host "❌ requirements.txt file NOT found. Please create it."
+}
+
+# Check for virtual environment
+if (Test-Path -Path "venv" -PathType Container) {
+    Write-Host "✅ venv directory found."
+} else {
+    Write-Host "❌ venv directory NOT found. Please create a virtual environment using: python -m venv venv"
+}
+
+# Check for installed packages
+if (Test-Path -Path "venv" -PathType Container) {
+    $installedPackages = .\venv\Scripts\pip.exe list
+    if ($installedPackages -match "google-cloud-aiplatform") {
+        Write-Host "✅ google-cloud-aiplatform is installed."
+    } else {
+        Write-Host "❌ google-cloud-aiplatform is NOT installed. Please run: .\venv\Scripts\pip.exe install -r requirements.txt"
+    }
+    if ($installedPackages -match "google-auth") {
+        Write-Host "✅ google-auth is installed."
+    } else {
+        Write-Host "❌ google-auth is NOT installed. Please run: .\venv\Scripts\pip.exe install -r requirements.txt"
+    }
+    if ($installedPackages -match "agent-starter-pack") {
+        Write-Host "✅ agent-starter-pack is installed."
+    } else {
+        Write-Host "❌ agent-starter-pack is NOT installed. Please run: .\venv\Scripts\pip.exe install -r requirements.txt"
+    }
+}
+
+# 5. Environment Configuration (Manual Steps)
+
+Write-Host "`n--- 5. Environment Configuration (Manual Steps) ---"
 Write-Host "These steps require a Google Cloud Project ID and credentials, which will be provided at the hackathon."
 Write-Host "1. Authenticate Your Account: gcloud auth application-default login"
 Write-Host "2. Set Your Project: gcloud config set project YOUR_PROJECT_ID"

@@ -80,9 +80,57 @@ echo "gemini extensions install https://github.com/gemini-cli-extensions/gcloud"
 echo "gemini extensions install https://github.com/ox01024/gemini-cli-git"
 echo "gemini extensions install https://github.com/gemini-cli-extensions/code-review"
 
-# 4. Environment Configuration (Manual Steps)
+# 4. Project Setup
 
-echo -e "\n--- 4. Environment Configuration (Manual Steps) ---"
+echo -e "\n--- 4. Project Setup ---"
+
+# Check for agent_registration_tool directory
+if [ -d "agent_registration_tool" ]; then
+  echo "✅ agent_registration_tool directory found."
+else
+  echo "❌ agent_registration_tool directory NOT found. Please clone it using: git clone https://github.com/VeerMuchandi/agent_registration_tool.git"
+fi
+
+# Check for requirements.txt file
+if [ -f "requirements.txt" ]; then
+  echo "✅ requirements.txt file found."
+else
+  echo "❌ requirements.txt file NOT found. Please create it."
+fi
+
+# Check for virtual environment
+if [ -d "venv" ]; then
+  echo "✅ venv directory found."
+else
+  echo "❌ venv directory NOT found. Please create a virtual environment using: python3 -m venv venv"
+fi
+
+# Check for installed packages
+if [ -d "venv" ]; then
+  source venv/bin/activate
+  INSTALLED_PACKAGES=$(pip list)
+  if echo "$INSTALLED_PACKAGES" | grep -q "google-cloud-aiplatform"; then
+    echo "✅ google-cloud-aiplatform is installed."
+  else
+    echo "❌ google-cloud-aiplatform is NOT installed. Please run: pip install -r requirements.txt"
+  fi
+  if echo "$INSTALLED_PACKAGES" | grep -q "google-auth"; then
+    echo "✅ google-auth is installed."
+  else
+    echo "❌ google-auth is NOT installed. Please run: pip install -r requirements.txt"
+  fi
+  if echo "$INSTALLED_PACKAGES" | grep -q "agent-starter-pack"; then
+    echo "✅ agent-starter-pack is installed."
+  else
+    echo "❌ agent-starter-pack is NOT installed. Please run: pip install -r requirements.txt"
+  fi
+  deactivate
+fi
+
+
+# 5. Environment Configuration (Manual Steps)
+
+echo -e "\n--- 5. Environment Configuration (Manual Steps) ---"
 echo "These steps require a Google Cloud Project ID and credentials, which will be provided at the hackathon."
 echo "1. Authenticate Your Account: gcloud auth application-default login"
 echo "2. Set Your Project: gcloud config set project YOUR_PROJECT_ID"
