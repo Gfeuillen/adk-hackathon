@@ -22,9 +22,11 @@ then
     print_message "Python 3 is not installed. Please install version 3.10 or newer from https://www.python.org/downloads/"
     exit 1
 else
-    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))
-')
-    if (( $(echo "$PYTHON_VERSION < 3.10" | bc -l) )); then
+    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+    PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
+    PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
+
+    if [ "$PYTHON_MAJOR" -lt 3 ] || ([ "$PYTHON_MAJOR" -eq 3 ] && [ "$PYTHON_MINOR" -lt 10 ]); then
         print_message "Python version is $PYTHON_VERSION. Please upgrade to version 3.10 or newer."
         exit 1
     else
@@ -48,7 +50,8 @@ then
     exit 1
 else
     NODE_VERSION=$(node -v)
-    if (( $(echo "${NODE_VERSION:1} < 20" | bc -l) )); then
+    NODE_MAJOR_VERSION=$(echo "$NODE_VERSION" | cut -d. -f1 | sed 's/v//')
+    if [ "$NODE_MAJOR_VERSION" -lt 20 ]; then
         print_message "Node.js version is $NODE_VERSION. Please upgrade to version 20 or higher."
         exit 1
     else
@@ -76,10 +79,10 @@ fi
 
 # 7. Install Gemini CLI Extensions
 print_message "Installing Gemini CLI extensions..."
-gemini extensions install https://github.com/derailed-dash/adk-docs-ext
-gemini extensions install https://github.com/gemini-cli-extensions/gcloud
-gemini extensions install https://github.com/ox01024/gemini-cli-git
-gemini extensions install https://github.com/gemini-cli-extensions/code-review
+yes | gemini extensions install https://github.com/derailed-dash/adk-docs-ext
+yes | gemini extensions install https://github.com/gemini-cli-extensions/gcloud
+yes | gemini extensions install https://github.com/ox01024/gemini-cli-git
+yes | gemini extensions install https://github.com/gemini-cli-extensions/code-review
 
 # 8. Clone Agent Registration Tool
 if [ ! -d "agent_registration_tool" ]
