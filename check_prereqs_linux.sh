@@ -131,6 +131,22 @@ print_message "Installing dependencies..."
 source venv/bin/activate
 pip install -r requirements.txt
 
+# 12. Check for Vertex AI API
+print_message "Checking if Vertex AI API is enabled..."
+if [[ -z "$(gcloud services list --enabled --filter='config.name=aiplatform.googleapis.com' --format='value(config.name)')" ]]; then
+  print_message "Vertex AI API is not enabled."
+  read -p "Do you want to enable the Vertex AI API now? [y/n] (y): " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ || -z $REPLY ]]; then
+    print_message "Enabling Vertex AI API..."
+    gcloud services enable aiplatform.googleapis.com
+  else
+    print_message "Skipping Vertex AI API enablement."
+  fi
+else
+  print_message "Vertex AI API is already enabled."
+fi
+
 print_message "Downloading GEMINI.md..."
 curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/deloitte/GEMINI.md
 echo -e "\033[0;32mWelcome to the Hackathon! Your next step is to start the Gemini CLI with the 'gemini' command.\033[0m"
