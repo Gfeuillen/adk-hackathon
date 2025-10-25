@@ -1,5 +1,21 @@
 #!/bin/bash
 
+cat << EOF
+\033[0;32m
+  ____ _____ _   _    _    ___   ____  _____ _     ___ ___ _____ _____ _____
+ / ___| ____| \ | |  / \  |_ _| |  _ \| ____| |   / _ \_ _|_   _|_   _| ____|
+| |  _|  _| |  \| | / _ \  | |  | | | |  _| | |  | | | | |  | |   | | |  _|
+| |_| | |___| |\  |/ ___ \ | |  | |_| | |___| |__| |_| | |  | |   | | | |___
+ \____|_____|_| \_/_/   \_\___| |____/|_____|_____|\___/___| |_|   |_| |_____|
+
+ _   _    _    ____ _  __    _  _____ _   _  ___  _   _
+| | | |  / \  / ___| |/ /   / \|_   _| | | |/ _ \| \ | |
+| |_| | / _ \| |   | ' /   / _ \ | | | |_| | | | |  \| |
+|  _  |/ ___ \ |___| . \  / ___ \ | | |  _  | |_| | |\  |
+|_| |_/_/   \_\____|_|\_\/_/   \_\_| |_| |_|\___/|_| \_|
+\033[0m
+EOF
+
 # Function to print messages
 print_message() {
   echo "================================================================================"
@@ -22,7 +38,8 @@ then
     print_message "Python 3 is not installed. Please install version 3.10 or newer from https://www.python.org/downloads/"
     exit 1
 else
-    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))
+')
     PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
     PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
 
@@ -116,3 +133,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 print_message "All prerequisites are installed and configured."
+
+# 12. Create Agent
+print_message "Starting interactive agent creation..."
+uvx agent-starter-pack create \
+  --agent adk_base \
+  --region us-central1 \
+  --deployment-target agent_engine \
+  --cicd-runner google_cloud_build
