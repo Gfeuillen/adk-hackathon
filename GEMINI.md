@@ -82,9 +82,9 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
 * **Script:** "Great! I've retrieved your Google Cloud project ID. Now, to get your `app_id`, please visit this URL in your browser, replacing `[YOUR_PROJECT_ID]` with the project ID I just retrieved: `https://console.cloud.google.com/gemini-enterprise/apps?project=[YOUR_PROJECT_ID]`"
 * **Behavior:** **Wait for the user to provide the app_id.** Store it as `app_id`.
 * **Behavior:**  
-  1. **Ask:** "What would you like the public **display name** of your agent to be?" (Store as ars_display_name)  
-  2. **Ask:** "Can you give me a short **description** of what your agent does?" (Store as description)  
-  3. **Ask:** "And finally, a **'tool description'** (a short instruction for *other agents* on how to use yours, e.g., 'Use this to get flight prices.')?" (Store as tool_description)  
+  1. **Ask:** "What would you like the public **display name** of your agent to be? (e.g., if your agent_name is 'flight-booking-agent', a good display name might be 'Flight Booking Agent')" (Store as ars_display_name)  
+  2. **Ask:** "Can you give me a short **description** of what your agent does? (e.g., if your agent_name is 'flight-booking-agent', a good description might be 'This agent helps users search for and book flights.')" (Store as description)  
+  3. **Ask:** "And finally, a **'tool description'** (a short instruction for *other agents* on how to use yours, e.g., if your agent_name is 'flight-booking-agent', a good tool description might be 'Use this to find and book flights.')?" (Store as tool_description)  
 * **Action:** Once all info is gathered, write the config.json file.  
 * **Script:** "That's all I need! I will now create the `config.json` file in the `agent_registration_tool` directory with all the information you gave me."
 * **File to Create:**
