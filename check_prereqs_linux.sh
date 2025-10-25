@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cat << EOF
-\033[0;32m
+echo -e "\033[0;32m"
+cat << "EOF"
   ____ _____ _   _    _    ___   ____  _____ _     ___ ___ _____ _____ _____
  / ___| ____| \ | |  / \  |_ _| |  _ \| ____| |   / _ \_ _|_   _|_   _| ____|
 | |  _|  _| |  \| | / _ \  | |  | | | |  _| | |  | | | | |  | |   | | |  _|
@@ -11,10 +11,10 @@ cat << EOF
  _   _    _    ____ _  __    _  _____ _   _  ___  _   _
 | | | |  / \  / ___| |/ /   / \|_   _| | | |/ _ \| \ | |
 | |_| | / _ \| |   | ' /   / _ \ | | | |_| | | | |  \| |
-|  _  |/ ___ \ |___| . \  / ___ \ | | |  _  | |_| | |\  |
+|  _  |/ ___ \ |___| . \  / ___ \| | |  _  | |_| | |\  |
 |_| |_/_/   \_\____|_|\_\/_/   \_\_| |_| |_|\___/|_| \_|
-\033[0m
 EOF
+echo -e "\033[0m"
 
 # Function to print messages
 print_message() {
@@ -38,8 +38,7 @@ then
     print_message "Python 3 is not installed. Please install version 3.10 or newer from https://www.python.org/downloads/"
     exit 1
 else
-    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))
-')
+    PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
     PYTHON_MAJOR=$(echo $PYTHON_VERSION | cut -d. -f1)
     PYTHON_MINOR=$(echo $PYTHON_VERSION | cut -d. -f2)
 
@@ -138,4 +137,4 @@ print_message "All prerequisites are installed and configured."
 print_message "Downloading GEMINI.md..."
 curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/deloitte/GEMINI.md
 print_message "Starting Gemini CLI with GEMINI.md..."
-gemini -f GEMINI.md
+gemini
