@@ -97,9 +97,9 @@ fi
 # 7. Install Gemini CLI Extensions
 print_message "Installing Gemini CLI extensions..."
 yes | gemini extensions install https://github.com/derailed-dash/adk-docs-ext
-yes | gemini extensions install https://github.com/gemini-cli-extensions/gcloud
-yes | gemini extensions install https://github.com/ox01024/gemini-cli-git
-yes | gemini extensions install https://github.com/gemini-cli-extensions/code-review
+# yes | gemini extensions install https://github.com/gemini-cli-extensions/gcloud
+# yes | gemini extensions install https://github.com/ox01024/gemini-cli-git
+# yes | gemini extensions install https://github.com/gemini-cli-extensions/code-review
 
 # 8. Clone Agent Registration Tool
 if [ ! -d "agent_registration_tool" ]
@@ -134,10 +134,8 @@ pip install -r requirements.txt
 
 print_message "All prerequisites are installed and configured."
 
-# 12. Create Agent
-print_message "Starting interactive agent creation..."
-uvx agent-starter-pack create \
-  --agent adk_base \
-  --region us-central1 \
-  --deployment-target agent_engine \
-  --cicd-runner google_cloud_build
+# 12. Download GEMINI.md and Start Gemini CLI
+print_message "Downloading GEMINI.md..."
+curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/deloitte/GEMINI.md
+print_message "Starting Gemini CLI with GEMINI.md..."
+gemini -f GEMINI.md
