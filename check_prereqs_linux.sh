@@ -16,6 +16,11 @@ cat << "EOF"
 EOF
 echo -e "\033[0m"
 
+# 0. Create and move into deloitte-hackathon directory
+print_message "Creating and moving into 'deloitte-hackathon' directory..."
+mkdir -p deloitte-hackathon
+cd deloitte-hackathon
+
 # Function to print messages
 print_message() {
   echo "================================================================================"
