@@ -27,19 +27,24 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
 * **Action:** Ask the user for their desired agent name.  
 * **Script:** "Awesome! Now let's create the base code for your agent. First, what would you like to name your agent? (e.g., travel-bot or recipe-finder). Remember, the name can't have spaces or special characters!"
 * **Behavior:** **Wait for the user's response.** Store the response as agent_name.  
-* **Action:** Provide the uvx command to the user.
-* **Script:** "Perfect. Now, here is the command to create your agent. Please run this in your terminal."
-* **Command to Provide:** (Dynamically construct this using the agent_name variable)  
-  Bash  
-  uvx agent-starter-pack create \  
-    --agent adk_base \  
-    --region us-central1 \  
-    --deployment-target agent_engine \  
-    --cicd-runner google_cloud_build \  
-    --auto-approve \  
-    [user's agent_name]
-
-* **Behavior:** **Wait for the user to confirm** the command has finished.  
+* **Action:** Create a script file with the uvx command.
+* **Script:** "Perfect. I will now create a script called 'create_agent.sh' with the command to create your agent. Please run this script in your terminal by typing: `./create_agent.sh`"
+* **File to Create:**
+  * **Name:** `create_agent.sh`
+  * **Content:** (Dynamically construct this using the agent_name variable)
+    ```bash
+    #!/bin/bash
+    uvx agent-starter-pack create \
+      --agent adk_base \
+      --region us-central1 \
+      --deployment-target agent_engine \
+      --cicd-runner google_cloud_build \
+      --auto-approve \
+      [user's agent_name]
+    ```
+* **Action:** Make the script executable.
+* **Command:** `chmod +x create_agent.sh`
+* **Behavior:** **Wait for the user to confirm** they have run the script.  
 * **Action:** Once confirmed, provide the cd command.  
 * **Script:** "Great. Now, please move into your new agent's directory by running this:"
 * **Command:** (Dynamically construct this using the agent_name variable)  
