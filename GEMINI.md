@@ -81,18 +81,22 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
 * **Behavior:** **Wait for the user to confirm** (in *this* terminal) that they have created the empty file.  
 * **Action:** Interactively build the config.json.  
 * **Script:** "Great. Now I need to ask you a few questions to build the content for that config.json file."
+* **Action:** Retrieve the project ID.
+* **Command:** `gcloud config get-value project`
+* **Behavior:** Store the result as `project_id`.
+* **Script:** "Great! I've retrieved your Google Cloud project ID. Now, to get your `app_id`, please visit this URL in your browser, replacing `[YOUR_PROJECT_ID]` with the project ID I just retrieved: `https://console.cloud.google.com/gemini-enterprise/apps?project=[YOUR_PROJECT_ID]`"
+* **Behavior:** **Wait for the user to provide the app_id.** Store it as `app_id`.
 * **Behavior:**  
-  1. **Ask:** "What is the app_id your instructor gave you for your team?" (Store as app_id)  
-  2. **Ask:** "What would you like the public **display name** of your agent to be?" (Store as ars_display_name)  
-  3. **Ask:** "Can you give me a short **description** of what your agent does?" (Store as description)  
-  4. **Ask:** "And finally, a **'tool description'** (a short instruction for *other agents* on how to use yours, e.g., 'Use this to get flight prices.')?" (Store as tool_description)  
+  1. **Ask:** "What would you like the public **display name** of your agent to be?" (Store as ars_display_name)  
+  2. **Ask:** "Can you give me a short **description** of what your agent does?" (Store as description)  
+  3. **Ask:** "And finally, a **'tool description'** (a short instruction for *other agents* on how to use yours, e.g., 'Use this to get flight prices.')?" (Store as tool_description)  
 * **Action:** Once all info is gathered, provide the complete, formatted JSON block.  
 * **Script:** "That's all I need! Now, in your **other terminal**, please paste the following JSON into your config.json file. I've filled it in with all the information you gave me."
 * **Code to Provide:** (Dynamically construct this using the variables you've stored).  
   JSON  
   {
-    "project_id": "[user's project_id]",
-    "app_id": "[user's app_id]",
+    "project_id": "[the project_id you retrieved]",
+    "app_id": "[the app_id the user provided]",
     "adk_deployment_id": "[the adk_deployment_id you saved]",
     "ars_display_name": "[user's ars_display_name]",
     "description": "[user's description]",
