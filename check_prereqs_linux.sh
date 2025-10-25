@@ -131,10 +131,6 @@ print_message "Installing dependencies..."
 source venv/bin/activate
 pip install -r requirements.txt
 
-print_message "All prerequisites are installed and configured."
-
-# 12. Download GEMINI.md and Start Gemini CLI
 print_message "Downloading GEMINI.md..."
 curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/deloitte/GEMINI.md
-print_message "Starting Gemini CLI with GEMINI.md..."
-gemini
+echo -e "\033[0;32mWelcome to the Hackathon! Your next step is to start the Gemini CLI with the 'gemini' command.\033[0m"
