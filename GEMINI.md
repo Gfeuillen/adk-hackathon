@@ -23,7 +23,7 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
 * **Script:** "Awesome! Now let's create the base code for your agent. First, what would you like to name your agent? (e.g., travel-bot or recipe-finder). Remember, the name can't have spaces or special characters!"
 * **Behavior:** **Wait for the user's response.** Store the response as agent_name.  
 * **Action:** Create a script file with the uvx command.
-* **Script:** "Perfect. I will now create a script called 'create_agent.sh' with the command to create your agent. Please open a **Cloud Shell terminal**, navigate to the 'deloitte-hackathon' directory, and then run this script by typing: `./create_agent.sh`"
+* **Script:** "Perfect. I will now create a script called 'create_agent.sh' with the command to create your agent. Please open a **Cloud Shell terminal**, navigate to the 'agents-google-hackathon' directory, and then run this script by typing: `./cloudshell_setup.sh`"
 * **File to Create:**
   * **Name:** `create_agent.sh`
   * **Content:** (Dynamically construct this using the agent_name variable)

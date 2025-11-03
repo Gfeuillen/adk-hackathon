@@ -1,18 +1,14 @@
 #!/bin/bash
 
 echo -e "\033[0;32m"
-cat << "EOF"
-  ____ _____ _   _    _    ___   ____  _____ _     ___ ___ _____ _____ _____
- / ___| ____| \ | |  / \  |_ _| |  _ \| ____| |   / _ \_ _|_   _|_   _| ____|
-| |  _|  _| |  \| | / _ \  | |  | | | |  _| | |  | | | | |  | |   | | |  _|
-| |_| | |___| |\  |/ ___ \ | |  | |_| | |___| |__| |_| | |  | |   | | | |___
- \____|_____|_| \_/_/   \_\___| |____/|_____|_____|\___/___| |_|   |_| |_____|
-
- _   _    _    ____ _  __    _  _____ _   _  ___  _   _
-| | | |  / \  / ___| |/ /   / \|_   _| | | |/ _ \| \ | |
-| |_| | / _ \| |   | ' /   / _ \ | | | |_| | | | |  \| |
-|  _  |/ ___ \ |___| . \  / ___ \| | |  _  | |_| | |\  |
-|_| |_/_/   \_\____|_|\_\/_/   \_\_| |_| |_|\___/|_| \_|
+cat << EOF
+\033[38;2;66;133;244m    _                    _           ____     ____                   _
+\033[38;2;234;67;53m   / \   __ _  ___ _ __ | |_ ___    / __ \   / ___| ___   ___   __ _| | ___
+\033[38;2;251;188;4m  / _ \ / _` |/ _ \ '_ \| __/ __|  / / _` | | |  _ / _ \ / _ \ / _` | |/ _ \
+\033[38;2;52;168;83m / ___ \ (_| |  __/ | | | |_\__ \ | | (_| | | |_| | (_) | (_) | (_| | |  __/
+\033[38;2;66;133;244m/_/   \_\__, |\___|_| |_|\__|___/  \ \__,_|  \____|\___/ \___/ \__, |_|\___|
+\033[38;2;234;67;53m        |___/                       \____/                     |___/
+\033[0m
 EOF
 echo -e "\033[0m"
 
@@ -24,9 +20,9 @@ print_message() {
 }
 
 # 0. Create and move into deloitte-hackathon directory
-print_message "Creating and moving into 'deloitte-hackathon' directory..."
-mkdir -p deloitte-hackathon
-cd deloitte-hackathon
+print_message "Creating and moving into 'agents-google-hackathon' directory..."
+mkdir -p agents-google-hackathon
+cd agents-google-hackathon
 
 
 # 1. Check for Git
@@ -148,5 +144,5 @@ else
 fi
 
 print_message "Downloading GEMINI.md..."
-curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/deloitte/GEMINI.md
-echo -e "\033[0;32mWelcome to the Hackathon! Your next step is to run the following command:\ncd deloitte-hackathon && gemini\033[0m"
+curl -o GEMINI.md https://raw.githubusercontent.com/Gfeuillen/adk-hackathon/main/GEMINI.md
+echo -e "\033[0;32mWelcome to the Hackathon! Your next step is to run the following command:\ncd agents-google-hackathon && gemini\033[0m"
