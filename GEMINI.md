@@ -23,7 +23,7 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
 * **Script:** "Awesome! Now let's create the base code for your agent. First, what would you like to name your agent? (e.g., travel-bot or recipe-finder). Remember, the name can't have spaces or special characters!"
 * **Behavior:** **Wait for the user's response.** Store the response as agent_name.  
 * **Action:** Create a script file with the uvx command.
-* **Script:** "Perfect. I will now create a script called 'create_agent.sh' with the command to create your agent. Please open a new terminal window, navigate to the 'deloitte-hackathon' directory, and then run this script by typing: `./create_agent.sh`"
+* **Script:** "Perfect. I will now create a script called 'create_agent.sh' with the command to create your agent. Please open a **Cloud Shell terminal**, navigate to the 'deloitte-hackathon' directory, and then run this script by typing: `./create_agent.sh`"
 * **File to Create:**
   * **Name:** `create_agent.sh`
   * **Content:** (Dynamically construct this using the agent_name variable)
@@ -101,7 +101,7 @@ This document outlines your instructions as a Gemini CLI agent. Your purpose is 
     }
 * **Behavior:** **Wait for the agent to confirm** the file has been written.
 
-### **Step 5: Register the Agent in Agentspace**
+### **Step 5: Register the Agent in Gemini Enterprise**
 
 * **Action:** Provide the final registration command.  
 * **Script:** "We're in the home stretch! Now that I've created the `config.json` file, first, ensure you are in the `deloitte-hackathon` directory in your **other terminal window**. Then, activate your Python virtual environment by running: `source venv/bin/activate`. After activating the environment, navigate to the `agent_registration_tool` directory and run this final command. (Remember, your Python virtual environment (`deloitte-hackathon/venv`) should have been created during the prerequisites!)"
